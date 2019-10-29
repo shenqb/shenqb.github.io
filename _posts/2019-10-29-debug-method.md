@@ -17,18 +17,13 @@ author: shenqb
 ##  前端调试
 
 
-yum install crontabs
+基于Chrome控制台做前端样式、前端脚本调试
 
 说明：
-/sbin/service crond start //启动服务
-/sbin/service crond stop //关闭服务
-/sbin/service crond restart //重启服务
-/sbin/service crond reload //重新载入配置
-查看crontab服务状态：service crond status
-手动启动crontab服务：service crond start
-查看crontab服务是否已设置为开机启动，执行命令：ntsysv
-加入开机自动启动:
-chkconfig crond on
+1、Elements标签页：用来查看，修改页面上的元素，包括DOM标签，以及css样式的查看，修改，还有相关css盒模型的图形信息；
+2、Console控制台：用于打印和输出相关的命令信息，其实console控制台除了我们熟知的报错，打印console.log信息外，还可以查看断点时的对象信息；
+3、Sources源码页：这个页面内我们可以找到当然浏览器页面中的js 源文件，方便我们查看和调试，支持断点调试，查看调用栈信息；
+4、Network网络请求页：可以看到所有的资源请求，包括网络请求，图片资源，html,css，js文件等请求，可以根据需求筛选请求项，一般多用于网络请求的查看和分析，分析后端接口是否正确传输，获取的数据是否准确，请求头，请求参数的查看。
 
 
 
@@ -36,7 +31,8 @@ chkconfig crond on
 
 
 
-## 1，crontab命令
+
+### 1，Elements标签页
 
 功能说明：设置计时器。
 语　　法：crontab [-u <用户名称>][配置文件] 或 crontab [-u <用户名称>][-elr]
@@ -52,7 +48,7 @@ Minute Hour Day Month DayOFWeek Command
 -r 　删除该用户的计时器设置。
 -u<用户名称> 　指定要设定计时器的用户名称。
 
-## 2，crontab 格式
+### 2，Console控制台
 
 基本格式 :
 * *　 *　 *　 *　　command
@@ -74,7 +70,7 @@ Minute Hour Day Month DayOFWeek Command
 # | | | | |
 # * * * * * command to be executed
 ```
-## 3，crontab文件的一些例子：
+### 3，Sources源码页
 
 > 1 简单打印
 
@@ -165,23 +161,37 @@ Minute Hour Day Month DayOFWeek Command
 每半小时同步一下时间
 ```
 
-##  4 创建cron脚本
+###  4 Network网络请求页
 
-1. 第一步：写cron脚本文件,命名为crontest.cron。
-15,30,45,59 * * * * echo "xgmtest....." >> xgmtest.txt  表示，每隔15分钟，执行打印一次命令 
 
-2. 第二步：添加定时任务。执行命令 “crontab crontest.cron”。搞定 
 
-3. 第三步："crontab -l" 查看定时任务是否成功或者检测/var/spool/cron下是否生成对应cron脚本
+##  后端调试
 
-## 将脚本改为可执行（针对shell，.sh文件）
 
-> chmod +x filename
+基于IDEA做后端代码调试
+
+
+
+##  SQL调试
+
+
+基于执行计划做SQL调试
+
+
+
+##  shell调试
+
+
+基于sh -x指令做shell调试
+
+
+
+
 
 
 引用：
 
-http://blog.csdn.net/u012402276/article/details/51063269
+https://blog.csdn.net/Ivana_zyf/article/details/78783680
 https://www.cnblogs.com/longjshz/p/5779215.html
 http://blog.csdn.net/edgdvcyz/article/details/53348832
 
