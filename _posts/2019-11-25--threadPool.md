@@ -12,26 +12,26 @@ author: shenqb
 
 ## 线程池参数
 
-##### corePoolSize：线程池中核心线程数的最大值；
-##### maxPoolSize：线程池中能拥有最多线程数；
-##### workQueue：用于缓存任务的阻塞队列；
-##### keepAliveTime：表示空闲线程的存活时间。
+* corePoolSize：线程池中核心线程数的最大值；
+*  maxPoolSize：线程池中能拥有最多线程数；
+*  workQueue：用于缓存任务的阻塞队列；
+*  keepAliveTime：表示空闲线程的存活时间。
 
 这四个参数，决定了线程池对新任务的处理策略。
 
 ## 线程池原理
 
 ![线程池处理流程](https://raw.githubusercontent.com/shenqb/shenqb.github.io/master/img/ThreadPool.png)
-** 如果把线程池比作一个单位的话，corePoolSize表示正式员工，线程可以表示一个员工。当向单位委派一项工作时，如果发现正式员工还没招满，单位就会招个正式员工来完成这项工作。随着向这个单位委派的工作增多，即使正式员工全部满了，工作还是干不完，那么单位只能按照新委派的工作先后顺序将他们找个地方搁置起来，这个地方就是 workQueue。等某个正式员工完成了手上的工作，就到放置任务的地方来领取新的任务。如果有大量的任务向这个单位委派，导致 workQueue已经没有空位来放置新的任务了，于是单位决定招临时工来完成任务。临时工不是想招多少就是多少，通过 maxPoolSize 规定了单位的人数最大值。**
-** 为了解释keepAliveTime的作用，我们在上述情况下做一种假设。假设线程池这个单位已经招了些临时工，但新任务没有继续增加，所以随着每个员工忙完手头的工作，都来workQueue领取新的任务（看看这个单位的员工多自觉啊）。随着各个员工齐心协力，任务越来越少，员工数没变，那么就必定有闲着没事干的员工。这样的话领导不乐意啦，但是又不能轻易fire没事干的员工，因为随时可能有新任务来，于是领导想了个办法，设定了keepAliveTime，当空闲的员工在keepAliveTime这段时间还没有找到事情干，就被辞退啦，毕竟地主家也没有余粮啊！当然辞退到corePoolSize个员工时就不再辞退了，领导也不想当光杆司令啊！**
+* 如果把线程池比作一个单位的话，corePoolSize表示正式员工，线程可以表示一个员工。当向单位委派一项工作时，如果发现正式员工还没招满，单位就会招个正式员工来完成这项工作。随着向这个单位委派的工作增多，即使正式员工全部满了，工作还是干不完，那么单位只能按照新委派的工作先后顺序将他们找个地方搁置起来，这个地方就是 workQueue。等某个正式员工完成了手上的工作，就到放置任务的地方来领取新的任务。如果有大量的任务向这个单位委派，导致 workQueue已经没有空位来放置新的任务了，于是单位决定招临时工来完成任务。临时工不是想招多少就是多少，通过 maxPoolSize 规定了单位的人数最大值。
+* 为了解释keepAliveTime的作用，我们在上述情况下做一种假设。假设线程池这个单位已经招了些临时工，但新任务没有继续增加，所以随着每个员工忙完手头的工作，都来workQueue领取新的任务（看看这个单位的员工多自觉啊）。随着各个员工齐心协力，任务越来越少，员工数没变，那么就必定有闲着没事干的员工。这样的话领导不乐意啦，但是又不能轻易fire没事干的员工，因为随时可能有新任务来，于是领导想了个办法，设定了keepAliveTime，当空闲的员工在keepAliveTime这段时间还没有找到事情干，就被辞退啦，毕竟地主家也没有余粮啊！当然辞退到corePoolSize个员工时就不再辞退了，领导也不想当光杆司令啊！**
 
 
 ##  四种拒绝策略
 
-##### AbortPolicy(抛出一个异常，默认的)
-##### DiscardPolicy(直接丢弃任务)
-##### DiscardOldestPolicy（丢弃队列里最老的任务，将当前这个任务继续提交给线程池）
-##### CallerRunsPolicy（交给线程池调用所在的线程进行处理)
+*  AbortPolicy(抛出一个异常，默认的)
+*  DiscardPolicy(直接丢弃任务)
+*  DiscardOldestPolicy（丢弃队列里最老的任务，将当前这个任务继续提交给线程池）
+*  CallerRunsPolicy（交给线程池调用所在的线程进行处理)
 
 ##  五种任务队列
 
@@ -53,10 +53,10 @@ SynchronousQueue（同步队列）一个不存储元素的阻塞队列，每个�
 ##  四种线程池类型
 说明：基于四个核心参数，可搭配出四种类型的线程池：
 
-##### newFixedThreadPool (固定数目线程的线程池)
-##### newCachedThreadPool(可缓存线程的线程池)
-##### newSingleThreadExecutor(单线程的线程池)
-##### newScheduledThreadPool(定时及周期执行的线程池)
+*  newFixedThreadPool (固定数目线程的线程池)
+*  newCachedThreadPool(可缓存线程的线程池)
+*  newSingleThreadExecutor(单线程的线程池)
+*  newScheduledThreadPool(定时及周期执行的线程池)
 
 #### newFixedThreadPool
 * 使用场景：
